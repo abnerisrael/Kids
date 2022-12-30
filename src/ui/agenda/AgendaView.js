@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, TouchableNativeFeedback } from 'react-native';
 import {Agenda} from 'react-native-calendars';
-import {Card, Text, Avatar} from 'react-native-paper';
+import {Card, Text} from 'react-native-paper';
 
 const AgendaItem = props => {
   return (
@@ -22,14 +22,9 @@ const AgendaItem = props => {
             <Text variant="bodyLarge" style={{marginBottom: 10}}>
               {props.item.title}
             </Text>
-            <View style={{flexDirection: 'row'}}>
-              <Avatar.Image
-                style={{marginRight: 10}}
-                size={48}
-                source={require('../../assets/img/cintia.jpeg')}
-              />
-              <Avatar.Icon style={{marginRight: 10}} size={48} icon="account" />
-            </View>
+            <Text variant="bodySmall" style={{marginBottom: 10}}>
+              Restam 2 vagas.
+            </Text>
           </View>
         </Card.Content>
       </Card>
@@ -41,21 +36,7 @@ const AgendaView = () => {
   return (
     <Agenda
       items={{
-        '2022-12-27': [
-          {
-            type: 'Aula',
-            turma: 'Kids',
-            title: 'Deus Jesus e o E.S.',
-            hour: '18:00',
-          },
-          {
-            type: 'Aula',
-            turma: 'Kids',
-            title: 'Deus Jesus e o E.S.',
-            hour: '18:00',
-          },
-        ],
-        '2022-12-28': [
+        '2022-12-30': [
           {
             type: 'Aula',
             turma: 'Kids',
