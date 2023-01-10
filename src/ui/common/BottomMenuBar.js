@@ -6,7 +6,7 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 const BOTTOM_APPBAR_HEIGHT = 80;
 const MEDIUM_FAB_HEIGHT = 56;
 
-const AgendaView = () => {
+const AgendaView = ({navigation}) => {
   const {bottom} = useSafeAreaInsets();
   const theme = useTheme();
 
@@ -20,8 +20,14 @@ const AgendaView = () => {
         },
       ]}
       safeAreaInsets={{bottom}}>
-      <Appbar.Action icon="calendar" onPress={() => {}} />
-      <Appbar.Action icon="account-supervisor" onPress={() => {}} />
+      <Appbar.Action
+        icon="calendar"
+        onPress={() => navigation.navigate('Agenda')}
+      />
+      <Appbar.Action
+        icon="account-supervisor"
+        onPress={() => navigation.navigate('Equipe')}
+      />
       <FAB
         mode="flat"
         size="medium"
