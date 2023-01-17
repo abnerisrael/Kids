@@ -32,7 +32,7 @@ const AgendaView = ({navigation}) => {
         mode="flat"
         size="medium"
         icon="plus"
-        onPress={() => {}}
+        onPress={()=>{}}
         style={[
           styles.fab,
           {top: (BOTTOM_APPBAR_HEIGHT - MEDIUM_FAB_HEIGHT) / 2},
