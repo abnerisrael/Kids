@@ -26,10 +26,6 @@ const CreateEventView = () => {
           selectionColor="#000"
         />
         <Divider style={stylesModal.divider} />
-        <Text variant="bodyLarge" style={stylesModal.label}>
-          Aula
-        </Text>
-        <Divider style={stylesModal.divider} />
         <View style={{marginBottom: 20}}>
           <Text variant="bodyLarge" style={stylesModal.label}>
             Início
