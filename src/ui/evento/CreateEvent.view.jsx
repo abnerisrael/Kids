@@ -17,8 +17,8 @@ const CreateEventView = () => {
     <KeyboardAvoidingView style={stylesModal.viewForm}>
         <TextInput
           style={stylesModal.title}
-          placeholder="Tema"
-          placeholderTextColor="#000"
+          placeholder="Tema do evento ..."
+          placeholderTextColor="#030303"
           value={textTittle}
           onChangeText={text => setTextTittle(text)}
           cursorColor="#000"
@@ -41,7 +41,7 @@ const CreateEventView = () => {
             </TouchableOpacity>
             <TouchableOpacity onPress={timeStartsPicker.showTimepicker}>
               <Text variant="bodyLarge" style={stylesModal.label}>
-                {timeStartsPicker.getDate().format('h:mm')}
+                {timeStartsPicker.getDate().format('H:mm')}
               </Text>
             </TouchableOpacity>
           </View>
@@ -58,7 +58,7 @@ const CreateEventView = () => {
           </TouchableOpacity>
           <TouchableOpacity onPress={dateEndsPicker.showTimepicker}>
             <Text variant="bodyLarge" style={stylesModal.label}>
-              {timeEndsPicker.getDate().format('h:mm')}
+              {timeEndsPicker.getDate().format('H:mm')}
             </Text>
           </TouchableOpacity>
           </View>
