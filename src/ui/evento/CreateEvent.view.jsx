@@ -148,7 +148,7 @@ const stylesModal = StyleSheet.create({
     paddingBottom: 20,
   },
   title: {
-    marginTop: 8,
+    marginTop: 20,
     marginBottom: 10,
     borderRadius: 10,
     lineHeight: 20,
