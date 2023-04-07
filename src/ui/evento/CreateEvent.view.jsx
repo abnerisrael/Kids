@@ -1,22 +1,17 @@
-import React, {useCallback, useMemo, useRef, useState} from 'react';
+import React, {useState} from 'react';
 import {Divider, Text, Chip} from 'react-native-paper';
-import {View, StyleSheet, TextInput, KeyboardAvoidingView} from 'react-native';
+import {View, StyleSheet, TextInput, KeyboardAvoidingView, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useDateTimerPicker } from '../hooks/useDateTimePicker';
 
 const CreateEventView = () => {
+  const dateStartsPicker = useDateTimerPicker();
+  const dateEndsPicker = useDateTimerPicker();
+  const timeStartsPicker = useDateTimerPicker();
+  const timeEndsPicker = useDateTimerPicker();
+
   const [textTittle, setTextTittle] = useState('');
   const [textDescricao, setTextDescricao] = useState('');
-
-  // ref
-  const bottomSheetRef = useRef(null); //BottomSheet
-
-  // variables
-  const snapPoints = useMemo(() => ['25%', '50%'], []);
-
-  // callbacks
-  const handleSheetChanges = useCallback(index => {
-    console.log('handleSheetChanges', index);
-  }, []);
 
   return (
     <KeyboardAvoidingView style={stylesModal.viewForm}>
@@ -39,12 +34,16 @@ const CreateEventView = () => {
             Início
           </Text>
           <View style={{...stylesModal.row, justifyContent: 'space-between'}}>
-            <Text variant="bodyLarge" style={stylesModal.label}>
-              Dom. 04 de Dezembro de 2022
-            </Text>
-            <Text variant="bodyLarge" style={stylesModal.label}>
-              19:30
-            </Text>
+            <TouchableOpacity onPress={dateStartsPicker.showDatepicker}>
+              <Text variant="bodyLarge" style={stylesModal.label}>
+                {dateStartsPicker.getDate().format('ddd. D MMMM YYYY')}
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={timeStartsPicker.showTimepicker}>
+              <Text variant="bodyLarge" style={stylesModal.label}>
+                {timeStartsPicker.getDate().format('h:mm')}
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
         <View>
@@ -52,12 +51,16 @@ const CreateEventView = () => {
             Término
           </Text>
           <View style={{...stylesModal.row, justifyContent: 'space-between'}}>
+          <TouchableOpacity onPress={dateEndsPicker.showDatepicker}>
             <Text variant="bodyLarge" style={stylesModal.label}>
-              Dom. 04 de Dezembro de 2022
+              {dateEndsPicker.getDate().format('ddd. D MMMM YYYY')}
             </Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={dateEndsPicker.showTimepicker}>
             <Text variant="bodyLarge" style={stylesModal.label}>
-              19:30
+              {timeEndsPicker.getDate().format('h:mm')}
             </Text>
+          </TouchableOpacity>
           </View>
         </View>
         <Divider style={stylesModal.divider} />
