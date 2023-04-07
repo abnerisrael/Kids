@@ -12,6 +12,7 @@ const CreateEventView = () => {
 
   const [textTittle, setTextTittle] = useState('');
   const [textDescricao, setTextDescricao] = useState('');
+  const [salaSelecionada, setSalaSelecionada] = useState('');
 
   return (
     <KeyboardAvoidingView style={stylesModal.viewForm}>
@@ -88,22 +89,17 @@ const CreateEventView = () => {
           </Text>
         </View>
         <View style={{...stylesModal.row, marginTop: 10}}>
-          <Chip
-            style={{marginRight: 20}}
-            onPress={() => console.log('Pressed')}>
-            Babies
-          </Chip>
-          <Chip
-            style={{marginRight: 20}}
-            onPress={() => console.log('Pressed')}>
-            Kids
-          </Chip>
-          <Chip
-            style={{marginRight: 20}}
-            icon="check"
-            onPress={() => console.log('Pressed')}>
-            Juniores
-          </Chip>
+          {['Babies', 'Kids', 'Juniores'].map( sala => {
+            return(
+              <Chip
+                key={sala}
+                icon={sala === salaSelecionada ? 'check' : ''}
+                style={{marginRight: 20}}
+                onPress={() => setSalaSelecionada(sala)}>
+                {sala}
+              </Chip>
+            )
+          })}
         </View>
         <Divider style={stylesModal.divider} />
         <View style={stylesModal.row}>
