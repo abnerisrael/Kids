@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Divider, Text, Chip, Button} from 'react-native-paper';
 import {
   View,
