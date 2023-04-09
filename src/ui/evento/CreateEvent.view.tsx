@@ -87,7 +87,7 @@ const CreateEventView = () => {
               {dateEndsPicker.getDate().format('ddd. D MMMM YYYY')}
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={dateEndsPicker.showTimepicker}>
+          <TouchableOpacity onPress={timeEndsPicker.showTimepicker}>
             <Text variant="bodyLarge" style={stylesModal.label}>
               {timeEndsPicker.getDate().format('H:mm')}
             </Text>
