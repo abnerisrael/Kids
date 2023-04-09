@@ -27,10 +27,6 @@ const CreateEventView = () => {
   const timeStartsPicker = useDateTimerPicker();
   const timeEndsPicker = useDateTimerPicker();
 
-  const [textTittle, setTextTittle] = useState('');
-  const [textDescricao, setTextDescricao] = useState('');
-  const [salaSelecionada, setSalaSelecionada] = useState('');
-
   const {
     control,
     setValue,
