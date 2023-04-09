@@ -125,12 +125,13 @@ const CreateEventView = () => {
           Sala
         </Text>
       </View>
+      {errors.sala && <Text style={{color: 'red'}}>Preencha este campo.</Text>}
       <View
         style={{
           ...stylesModal.row,
           marginTop: 10,
           flexWrap: 'wrap',
-          flexDirection: 'row'
+          flexDirection: 'row',
         }}>
         <Controller
           control={control}
@@ -156,9 +157,6 @@ const CreateEventView = () => {
             );
           }}
         />
-        {errors.sala && (
-          <Text style={{color: 'red'}}>Preencha este campo.</Text>
-        )}
       </View>
       <Divider style={stylesModal.divider} />
       <View style={stylesModal.row}>
@@ -172,6 +170,9 @@ const CreateEventView = () => {
           Descrição
         </Text>
       </View>
+      {errors.descricao && (
+        <Text style={{color: 'red'}}>Preencha este campo.</Text>
+      )}
       <Controller
         control={control}
         rules={{
@@ -195,10 +196,6 @@ const CreateEventView = () => {
           />
         )}
       />
-      {errors.descricao && (
-        <Text style={{color: 'red'}}>Preencha este campo.</Text>
-      )}
-
       <Button mode="contained-tonal" onPress={handleSubmit(onSubmit)}>
         Salvar
       </Button>
