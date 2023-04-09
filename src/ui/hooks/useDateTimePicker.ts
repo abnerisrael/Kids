@@ -5,15 +5,17 @@ import 'moment/locale/pt-br';
 
 /**
  * If no arguments are provided,
- * the constructor will create a 
- * JavaScript Date object with the 
+ * the constructor will create a
+ * JavaScript Date object with the
  * current date and time
  * according to the system settings.
  * See: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Date#descrição
- * @param initialTimestampUnix 
+ * @param initialTimestampUnix
  * @returns
  */
-export const useDateTimerPicker = (initialTimestampUnix: number | null) => {
+export const useDateTimerPicker = (
+  initialTimestampUnix: number | null = null,
+) => {
   moments.locale('pt-br');
 
   const initialDate: Date = initialTimestampUnix
@@ -46,7 +48,7 @@ export const useDateTimerPicker = (initialTimestampUnix: number | null) => {
 
   const getDate = () => {
     return moment(date);
-  }
+  };
 
   return {
     getDate,
