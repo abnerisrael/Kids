@@ -226,7 +226,6 @@ const stylesModal = StyleSheet.create({
   },
   title: {
     marginTop: 20,
-    marginBottom: 10,
     borderRadius: 10,
     lineHeight: 20,
     color: '#000',
