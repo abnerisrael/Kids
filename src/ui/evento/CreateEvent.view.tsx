@@ -122,7 +122,13 @@ const CreateEventView = () => {
           Sala
         </Text>
       </View>
-      <View style={{...stylesModal.row, marginTop: 10}}>
+      <View
+        style={{
+          ...stylesModal.row,
+          marginTop: 10,
+          flexWrap: 'wrap',
+          flexDirection: 'row'
+        }}>
         <Controller
           control={control}
           rules={{
@@ -130,19 +136,21 @@ const CreateEventView = () => {
           }}
           name="sala"
           render={({field: {value}}) => {
-            return ['Babies', 'Kids', 'Juniores'].map(sala => {
-              return (
-                <Chip
-                  key={sala}
-                  icon={sala === value ? 'check' : ''}
-                  style={{marginRight: 20}}
-                  onPress={() => {
-                    setValue('sala', sala);
-                  }}>
-                  {sala}
-                </Chip>
-              );
-            })
+            return ['Babies', 'Kids', 'Juniores', 'Todos', 'Nenhum'].map(
+              sala => {
+                return (
+                  <Chip
+                    key={sala}
+                    icon={sala === value ? 'check' : ''}
+                    style={{marginRight: 10, marginBottom: 10}}
+                    onPress={() => {
+                      setValue('sala', sala);
+                    }}>
+                    {sala}
+                  </Chip>
+                );
+              },
+            );
           }}
         />
         {errors.sala && (
