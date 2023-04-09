@@ -34,7 +34,14 @@ const CreateEventView = () => {
     formState: {errors},
   } = useForm<FormData>();
 
-  const onSubmit = data => console.log(data);
+  const onSubmit = formData => {
+    let data: FormData = Object.assign({}, formData);
+    data.dataInicial = dateStartsPicker.getDate().format('Y-MM-DD');
+    data.horaInicial = timeStartsPicker.getDate().format('H:mm:00');
+    data.dataFinal = dateEndsPicker.getDate().format('Y-MM-DD');
+    data.horaFinal = timeEndsPicker.getDate().format('H:mm:00');
+    console.log(data);
+  };
 
   return (
     <KeyboardAvoidingView style={stylesModal.viewForm}>
