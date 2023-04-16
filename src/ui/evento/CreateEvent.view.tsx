@@ -11,6 +11,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useDateTimerPicker} from '../hooks/useDateTimePicker';
 import {useForm, Controller} from 'react-hook-form';
 import {ScrollView} from 'react-native-gesture-handler';
+import VolunteerAvatar from '../components/VolunteerAvatar';
+import VolunteerDialog from './VolunteerDialog';
 
 type FormData = {
   tema: string;
@@ -25,7 +27,7 @@ type FormData = {
 type Voluntario = {
   id: number;
   nome: string;
-  funcao: Array<string>;
+  avatarUrl: string;
 };
 
 const CreateEventView = () => {
@@ -36,11 +38,21 @@ const CreateEventView = () => {
   const [professores, setProfessores] = useState<Voluntario[]>([]);
   const [auxiliares, setAuxiliares] = useState<Voluntario[]>([]);
 
+  const [visibleVolunteerDialog, setVisibleVolunteerDialog] =
+    useState<boolean>(false);
+  const hideVolunteerDialog = (): void => setVisibleVolunteerDialog(false);
+  const showVolunteerDialog = (): void => setVisibleVolunteerDialog(true);
+
+  const onVolunteerPress = (id: number) => {
+    showVolunteerDialog();
+  };
+
   const onAddProfessor = () => {
     const professor: Voluntario = {
       id: Math.random() * 1,
       nome: 'teacher',
-      funcao: ['professor'],
+      avatarUrl:
+        'https://photografos.com.br/wp-content/uploads/2020/12/fotografia.jpg',
     };
     setProfessores([...professores, professor]);
   };
@@ -49,10 +61,12 @@ const CreateEventView = () => {
     const auxiliar: Voluntario = {
       id: Math.random() * 1,
       nome: 'teacher',
-      funcao: ['auxiliar'],
+      avatarUrl:
+        'https://photografos.com.br/wp-content/uploads/2021/01/gestante-fotografia.jpeg',
     };
     setAuxiliares([...auxiliares, auxiliar]);
   };
+
 
   const {
     control,
@@ -72,6 +86,10 @@ const CreateEventView = () => {
 
   return (
     <KeyboardAvoidingView style={stylesModal.viewForm}>
+      <VolunteerDialog
+        visible={visibleVolunteerDialog}
+        hideDialog={hideVolunteerDialog}
+      />
       <ScrollView>
         <Controller
           control={control}
@@ -149,14 +167,13 @@ const CreateEventView = () => {
           </Text>
         </View>
         <View style={stylesModal.avatarsRow}>
-          {professores.map((professor: Voluntario) => (
-            <TouchableOpacity key={professor.id}>
-              <Avatar.Image
-                style={stylesModal.avatar}
-                size={48}
-                source={require('../../assets/img/cintia.jpeg')}
-              />
-            </TouchableOpacity>
+          {professores.map(({id, avatarUrl}: Voluntario) => (
+            <VolunteerAvatar
+              key={id}
+              avatarUri={avatarUrl}
+              style={stylesModal.avatar}
+              onPress={() => onVolunteerPress(id)}
+            />
           ))}
           <TouchableOpacity onPress={onAddProfessor}>
             <Avatar.Icon style={stylesModal.avatar} size={48} icon="plus" />
@@ -168,14 +185,13 @@ const CreateEventView = () => {
           </Text>
         </View>
         <View style={stylesModal.avatarsRow}>
-          {auxiliares.map((auxiliar: Voluntario) => (
-            <TouchableOpacity key={auxiliar.id}>
-              <Avatar.Image
-                style={stylesModal.avatar}
-                size={48}
-                source={require('../../assets/img/cintia.jpeg')}
-              />
-            </TouchableOpacity>
+          {auxiliares.map(({id, avatarUrl}: Voluntario) => (
+            <VolunteerAvatar
+              key={id}
+              id={id}
+              avatarUri={avatarUrl}
+              style={stylesModal.avatar}
+            />
           ))}
           <TouchableOpacity onPress={onAddAuxiliar}>
             <Avatar.Icon style={stylesModal.avatar} size={48} icon="plus" />
@@ -330,11 +346,11 @@ const stylesModal = StyleSheet.create({
   row: {flexDirection: 'row'},
   iconSection: {marginRight: 5},
   label: {color: '#000'},
-  avatar: {marginRight: 10, marginTop: 5, marginBottom: 5},
   avatarsRow: {
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
+  avatar: {marginRight: 10, marginTop: 5, marginBottom: 5},
 });
 
 export default CreateEventView;
