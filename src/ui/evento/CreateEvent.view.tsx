@@ -13,6 +13,7 @@ import {useForm, Controller} from 'react-hook-form';
 import {ScrollView} from 'react-native-gesture-handler';
 import VolunteerAvatar from '../components/VolunteerAvatar';
 import VolunteerDialog from './VolunteerDialog';
+import {Volunteer} from '../../data/interfaces/Volunteer.interface';
 
 type FormData = {
   tema: string;
@@ -24,33 +25,40 @@ type FormData = {
   descricao: string;
 };
 
-type Voluntario = {
-  id: number;
-  nome: string;
-  avatarUrl: string;
-};
-
 const CreateEventView = () => {
   const dateStartsPicker = useDateTimerPicker();
   const dateEndsPicker = useDateTimerPicker();
   const timeStartsPicker = useDateTimerPicker();
   const timeEndsPicker = useDateTimerPicker();
-  const [professores, setProfessores] = useState<Voluntario[]>([]);
-  const [auxiliares, setAuxiliares] = useState<Voluntario[]>([]);
+  const [professores, setProfessores] = useState<Volunteer[]>([]);
+  const [auxiliares, setAuxiliares] = useState<Volunteer[]>([]);
+  const [volunteerSelected, setVolunteerSelected] = useState<Volunteer>({});
 
   const [visibleVolunteerDialog, setVisibleVolunteerDialog] =
     useState<boolean>(false);
   const hideVolunteerDialog = (): void => setVisibleVolunteerDialog(false);
   const showVolunteerDialog = (): void => setVisibleVolunteerDialog(true);
 
-  const onVolunteerPress = (id: number) => {
+  const onProfessorPress = (id: number) => {
+    let volunteer = professores.find(
+      (professor: Volunteer) => professor.id === id
+    );
+    setVolunteerSelected(volunteer);
+    showVolunteerDialog();
+  };
+  
+  const onAuxiliarPress = (id: number) => {
+    let volunteer = auxiliares.find(
+      (auxiliar: Volunteer) => auxiliar.id === id
+    );
+    setVolunteerSelected(volunteer);
     showVolunteerDialog();
   };
 
   const onAddProfessor = () => {
-    const professor: Voluntario = {
+    const professor: Volunteer = {
       id: Math.random() * 1,
-      nome: 'teacher',
+      nome: 'João Toim',
       avatarUrl:
         'https://photografos.com.br/wp-content/uploads/2020/12/fotografia.jpg',
     };
@@ -58,15 +66,14 @@ const CreateEventView = () => {
   };
 
   const onAddAuxiliar = () => {
-    const auxiliar: Voluntario = {
+    const auxiliar: Volunteer = {
       id: Math.random() * 1,
-      nome: 'teacher',
+      nome: 'Gabrily',
       avatarUrl:
         'https://photografos.com.br/wp-content/uploads/2021/01/gestante-fotografia.jpeg',
     };
     setAuxiliares([...auxiliares, auxiliar]);
   };
-
 
   const {
     control,
@@ -89,6 +96,7 @@ const CreateEventView = () => {
       <VolunteerDialog
         visible={visibleVolunteerDialog}
         hideDialog={hideVolunteerDialog}
+        volunteer={volunteerSelected}
       />
       <ScrollView>
         <Controller
@@ -167,12 +175,12 @@ const CreateEventView = () => {
           </Text>
         </View>
         <View style={stylesModal.avatarsRow}>
-          {professores.map(({id, avatarUrl}: Voluntario) => (
+          {professores.map(({id, avatarUrl}: Volunteer) => (
             <VolunteerAvatar
               key={id}
               avatarUri={avatarUrl}
               style={stylesModal.avatar}
-              onPress={() => onVolunteerPress(id)}
+              onPress={() => onProfessorPress(id)}
             />
           ))}
           <TouchableOpacity onPress={onAddProfessor}>
@@ -185,12 +193,12 @@ const CreateEventView = () => {
           </Text>
         </View>
         <View style={stylesModal.avatarsRow}>
-          {auxiliares.map(({id, avatarUrl}: Voluntario) => (
+          {auxiliares.map(({id, avatarUrl}: Volunteer) => (
             <VolunteerAvatar
               key={id}
-              id={id}
               avatarUri={avatarUrl}
               style={stylesModal.avatar}
+              onPress={() => onAuxiliarPress(id)}
             />
           ))}
           <TouchableOpacity onPress={onAddAuxiliar}>
