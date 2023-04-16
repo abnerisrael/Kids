@@ -7,6 +7,7 @@ type Props = {
   visible: boolean;
   hideDialog: any;
   volunteer: Volunteer;
+  onRemove: any;
 };
 
 const VolunteerDialog = ({visible, hideDialog, volunteer}: Props) => {

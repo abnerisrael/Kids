@@ -41,15 +41,15 @@ const CreateEventView = () => {
 
   const onProfessorPress = (id: number) => {
     let volunteer = professores.find(
-      (professor: Volunteer) => professor.id === id
+      (professor: Volunteer) => professor.id === id,
     );
     setVolunteerSelected(volunteer);
     showVolunteerDialog();
   };
-  
+
   const onAuxiliarPress = (id: number) => {
     let volunteer = auxiliares.find(
-      (auxiliar: Volunteer) => auxiliar.id === id
+      (auxiliar: Volunteer) => auxiliar.id === id,
     );
     setVolunteerSelected(volunteer);
     showVolunteerDialog();
@@ -73,6 +73,20 @@ const CreateEventView = () => {
         'https://photografos.com.br/wp-content/uploads/2021/01/gestante-fotografia.jpeg',
     };
     setAuxiliares([...auxiliares, auxiliar]);
+  };
+
+  const onRemoveProfessor = () => {
+    const result = professores.filter(
+      (prof: Volunteer) => prof.id !== volunteerSelected.id
+    );
+    setProfessores(result);
+  };
+  
+  const onRemoveAuxiliar = () => {
+    const result = auxiliares.filter(
+      (aux: Volunteer) => aux.id !== volunteerSelected.id
+    );
+    setAuxiliares(result);
   };
 
   const {
