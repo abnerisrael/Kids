@@ -67,7 +67,7 @@ const CreateEventView = () => {
 
   const onAddAuxiliar = () => {
     const auxiliar: Volunteer = {
-      id: Math.random() * 1,
+      id: Math.random() * 2,
       nome: 'Gabrily',
       avatarUrl:
         'https://photografos.com.br/wp-content/uploads/2021/01/gestante-fotografia.jpeg',
@@ -75,18 +75,21 @@ const CreateEventView = () => {
     setAuxiliares([...auxiliares, auxiliar]);
   };
 
-  const onRemoveProfessor = () => {
-    const result = professores.filter(
-      (prof: Volunteer) => prof.id !== volunteerSelected.id
-    );
+  const removeProfessor = (id: number) => {
+    const result = professores.filter((prof: Volunteer) => prof.id !== id);
     setProfessores(result);
   };
-  
-  const onRemoveAuxiliar = () => {
-    const result = auxiliares.filter(
-      (aux: Volunteer) => aux.id !== volunteerSelected.id
-    );
+
+  const removeAuxiliar = (id: number) => {
+    const result = auxiliares.filter((aux: Volunteer) => aux.id !== id);
     setAuxiliares(result);
+  };
+
+  const onRemoveVolunteer = () => {
+    const {id}: Volunteer = volunteerSelected;
+    removeProfessor(id);
+    removeAuxiliar(id);
+    hideVolunteerDialog();
   };
 
   const {
@@ -111,6 +114,7 @@ const CreateEventView = () => {
         visible={visibleVolunteerDialog}
         hideDialog={hideVolunteerDialog}
         volunteer={volunteerSelected}
+        onRemove={onRemoveVolunteer}
       />
       <ScrollView>
         <Controller

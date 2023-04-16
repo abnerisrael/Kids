@@ -10,7 +10,7 @@ type Props = {
   onRemove: any;
 };
 
-const VolunteerDialog = ({visible, hideDialog, volunteer}: Props) => {
+const VolunteerDialog = ({visible, hideDialog, volunteer, onRemove}: Props) => {
   return (
     <Portal>
       <Dialog visible={visible} onDismiss={hideDialog}>
@@ -23,7 +23,7 @@ const VolunteerDialog = ({visible, hideDialog, volunteer}: Props) => {
         </Dialog.Content>
         <Dialog.Actions>
           <Button onPress={hideDialog}>Cancelar</Button>
-          <Button icon="trash-can-outline" onPress={() => console.log('Ok')}>
+          <Button icon="trash-can-outline" onPress={onRemove}>
             Remover
           </Button>
         </Dialog.Actions>
