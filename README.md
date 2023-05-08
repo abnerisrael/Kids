@@ -1,4 +1,4 @@
-# Wellcome 🖖
+# Kids 👫
 Kids app is an scheduler.
 It was concepted to be used by Kids Ministry on the Ministerio Homens Livres church, with propose to help teachers to manage class scales.
 
