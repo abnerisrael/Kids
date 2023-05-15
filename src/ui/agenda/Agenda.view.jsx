@@ -23,11 +23,6 @@ const AgendaItem = props => {
               {props.item.title}
             </Text>
             <View style={{flexDirection: 'row'}}>
-              <Avatar.Image
-                style={{marginRight: 10}}
-                size={48}
-                source={require('../../assets/img/cintia.jpeg')}
-              />
               <Avatar.Icon style={{marginRight: 10}} size={48} icon="account" />
             </View>
           </View>

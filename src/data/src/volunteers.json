@@ -1,0 +1,44 @@
+[
+    {
+        "id": 0,
+        "nome": "João Toim",
+        "avatarUrl": "https://photografos.com.br/wp-content/uploads/2020/12/fotografia.jpg",
+        "funcoes": [1, 2]
+    },
+    {
+        "id": 1,
+        "nome": "Pedro Fernadez",
+        "avatarUrl": "https://img.freepik.com/fotos-gratis/jovem-barbudo-com-camisa-listrada_273609-5677.jpg",
+        "funcoes": [1, 2]
+    },
+    {
+        "id": 2,
+        "nome": "Xico Antoim de Paula",
+        "avatarUrl": "https://img.freepik.com/fotos-gratis/cara-elegante-confiante-com-tatuagens-posando-na-varanda-do-apartamento_74855-2711.jpg",
+        "funcoes": [1]
+    },
+    {
+        "id": 3,
+        "nome": "luzenburga Medeiros",
+        "avatarUrl": "https://img.freepik.com/fotos-gratis/mulher-afro-americana-vestindo-camiseta-branca-close-up_53876-102233.jpg",
+        "funcoes": [1]
+    },
+    {
+        "id": 4,
+        "nome": "Grizelda",
+        "avatarUrl": "https://img.freepik.com/fotos-gratis/foto-da-cintura-para-cima-de-uma-mulher-tenra-feminina-e-gentil-com-penteado-encaracolado-penteado-para-o-lado-direito-inclinando-a-cabeca-e-sorrindo-sedutor-tornando-o-olhar-romantico-para-a-camera-se-abracando-sobre-o-fundo-amarelo_1258-81987.jpg",
+        "funcoes": [2]
+    },
+    {
+        "id": 5,
+        "nome": "Bubbaloo da California",
+        "avatarUrl": "https://img.freepik.com/fotos-gratis/retrato-de-uma-mulher-bonita-e-elegante-senior_23-2149038105.jpg",
+        "funcoes": [2]
+    },
+    {
+        "id": 6,
+        "nome": "Pedro Scooby",
+        "avatarUrl": "https://img.freepik.com/fotos-gratis/homem-de-tiro-medio-corrigindo-erros-de-gramatica_23-2150171372.jpg",
+        "funcoes": [2]
+    },
+]

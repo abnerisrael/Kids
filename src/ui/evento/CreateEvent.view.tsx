@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {Divider, Text, Chip, Button, Avatar} from 'react-native-paper';
 import {
   View,
@@ -13,7 +13,11 @@ import {useForm, Controller} from 'react-hook-form';
 import {ScrollView} from 'react-native-gesture-handler';
 import VolunteerAvatar from '../components/VolunteerAvatar';
 import VolunteerDialog from './VolunteerDialog';
-import {Volunteer} from '../../data/interfaces/Volunteer.interface';
+import Volunteer from '../../data/models/Volunteer.model';
+import VolunteerUseCase from '../../domain/usecases/volunteer.usercase';
+import {Picker} from '@react-native-picker/picker';
+
+const volunteerList = VolunteerUseCase.list();
 
 type FormData = {
   tema: string;
@@ -55,24 +59,34 @@ const CreateEventView = () => {
     showVolunteerDialog();
   };
 
-  const onAddProfessor = () => {
-    const professor: Volunteer = {
-      id: Math.random() * 1,
-      nome: 'João Toim',
-      avatarUrl:
-        'https://photografos.com.br/wp-content/uploads/2020/12/fotografia.jpg',
-    };
-    setProfessores([...professores, professor]);
+  const pickerProfRef = useRef();
+
+  function openProfPicker() {
+    pickerProfRef.current.focus();
+  }
+
+  const pickerAuxRef = useRef();
+
+  function openAuxPicker() {
+    pickerAuxRef.current.focus();
+  }
+
+  const onAddProfessor = (id: number): void => {
+    const professor = volunteerList.find(volunteer => volunteer.id === id);
+    if (professor) {
+      setProfessores([...professores, professor]);
+    } else {
+      console.error(`Professor id: ${id} não encontrado`);
+    }
   };
 
-  const onAddAuxiliar = () => {
-    const auxiliar: Volunteer = {
-      id: Math.random() * 2,
-      nome: 'Gabrily',
-      avatarUrl:
-        'https://photografos.com.br/wp-content/uploads/2021/01/gestante-fotografia.jpeg',
-    };
-    setAuxiliares([...auxiliares, auxiliar]);
+  const onAddAuxiliar = (id: number): void => {
+    const auxiliar = volunteerList.find(volunteer => volunteer.id === id);
+    if (auxiliar) {
+      setAuxiliares([...auxiliares, auxiliar]);
+    } else {
+      console.error(`Auxiliar id: ${id} não encontrado`);
+    }
   };
 
   const removeProfessor = (id: number) => {
@@ -201,7 +215,16 @@ const CreateEventView = () => {
               onPress={() => onProfessorPress(id)}
             />
           ))}
-          <TouchableOpacity onPress={onAddProfessor}>
+          <Picker
+            ref={pickerProfRef}
+            selectedValue={''}
+            onValueChange={onAddProfessor}>
+            <Picker.Item key={0} label="Nenhum" value="" />
+            {volunteerList.map(({id, nome}: Volunteer) => {
+              return <Picker.Item key={id} label={nome} value={id} />;
+            })}
+          </Picker>
+          <TouchableOpacity onPress={openProfPicker}>
             <Avatar.Icon style={stylesModal.avatar} size={48} icon="plus" />
           </TouchableOpacity>
         </View>
@@ -219,7 +242,16 @@ const CreateEventView = () => {
               onPress={() => onAuxiliarPress(id)}
             />
           ))}
-          <TouchableOpacity onPress={onAddAuxiliar}>
+          <Picker
+            ref={pickerAuxRef}
+            selectedValue={''}
+            onValueChange={onAddAuxiliar}>
+            <Picker.Item key={0} label="Nenhum" value="" />
+            {volunteerList.map(({id, nome}: Volunteer) => {
+              return <Picker.Item key={id} label={nome} value={id} />;
+            })}
+          </Picker>
+          <TouchableOpacity onPress={openAuxPicker}>
             <Avatar.Icon style={stylesModal.avatar} size={48} icon="plus" />
           </TouchableOpacity>
         </View>

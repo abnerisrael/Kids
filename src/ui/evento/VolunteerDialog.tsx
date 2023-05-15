@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {StyleSheet} from 'react-native';
 import {Avatar, Button, Dialog, Portal, Text} from 'react-native-paper';
-import {Volunteer} from '../../data/interfaces/Volunteer.interface';
+import Volunteer from '../../data/interfaces/iVolunteer.interface';
 
 type Props = {
   visible: boolean;
