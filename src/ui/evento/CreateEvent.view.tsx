@@ -16,6 +16,7 @@ import VolunteerDialog from './VolunteerDialog';
 import Volunteer from '../../data/models/Volunteer.model';
 import VolunteerUseCase from '../../domain/usecases/volunteer.usercase';
 import {Picker} from '@react-native-picker/picker';
+import {useNavigation} from '@react-navigation/native';
 
 const volunteerList = VolunteerUseCase.list();
 
@@ -27,9 +28,12 @@ type FormData = {
   horaFinal: string;
   sala: string;
   descricao: string;
+  professores_ids: number[];
+  auxiliares_ids: number[];
 };
 
 const CreateEventView = () => {
+  const navigation = useNavigation();
   const dateStartsPicker = useDateTimerPicker();
   const dateEndsPicker = useDateTimerPicker();
   const timeStartsPicker = useDateTimerPicker();
@@ -119,6 +123,8 @@ const CreateEventView = () => {
     data.horaInicial = timeStartsPicker.getDate().format('H:mm:00');
     data.dataFinal = dateEndsPicker.getDate().format('Y-MM-DD');
     data.horaFinal = timeEndsPicker.getDate().format('H:mm:00');
+    data.professores_ids = professores.map(({id}: Volunteer) => id);
+    data.auxiliares_ids = auxiliares.map(({id}: Volunteer) => id);
     console.log(data);
   };
 
@@ -130,6 +136,21 @@ const CreateEventView = () => {
         volunteer={volunteerSelected}
         onRemove={onRemoveVolunteer}
       />
+      <View style={stylesModal.actionButtonsArea}>
+        <Button
+          mode="text"
+          textColor="gray"
+          compact
+          onPress={() => navigation.goBack()}>
+          Cancelar
+        </Button>
+        <Button
+          icon="calendar-check"
+          mode="contained-tonal"
+          onPress={handleSubmit(onSubmit)}>
+          Agendar
+        </Button>
+      </View>
       <ScrollView>
         <Controller
           control={control}
@@ -340,9 +361,6 @@ const CreateEventView = () => {
             />
           )}
         />
-        <Button mode="contained-tonal" onPress={handleSubmit(onSubmit)}>
-          Salvar
-        </Button>
       </ScrollView>
     </KeyboardAvoidingView>
   );
@@ -409,6 +427,12 @@ const stylesModal = StyleSheet.create({
     flexWrap: 'wrap',
   },
   avatar: {marginRight: 10, marginTop: 5, marginBottom: 5},
+  actionButtonsArea: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginTop: 20,
+    justifyContent: 'space-between',
+  },
 });
 
 export default CreateEventView;
