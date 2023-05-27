@@ -1,6 +1,6 @@
 import React from 'react';
 import {Provider as PaperProvider} from 'react-native-paper';
-import BottomMenuBar from './src/ui/common/BottomMenuBar.component';
+import BottomMenuBar, {BOTTOM_APPBAR_HEIGHT} from './src/ui/common/BottomMenuBar.component';
 import AgendaView from './src/ui/agenda/Agenda.view';
 import EquipeView from './src/ui/equipe/Equipe.view';
 import {NavigationContainer} from '@react-navigation/native';
@@ -16,6 +16,7 @@ const App = () => {
       <PaperProvider>
         <NavigationContainer>
           <Tab.Navigator
+            sceneContainerStyle={{paddingBottom: BOTTOM_APPBAR_HEIGHT}}
             tabBar={props => (
               <BottomMenuBar
                 {...props}
