@@ -1,75 +1,59 @@
 import React from 'react';
-import {View, TouchableNativeFeedback } from 'react-native';
 import {Agenda} from 'react-native-calendars';
-import {Card, Text, Avatar} from 'react-native-paper';
+import ScheduleCard from './components/ScheduleCard/ScheduleCard';
 
-const AgendaItem = props => {
-  return (
-    <TouchableNativeFeedback>
-      <Card style={{marginRight: 10, marginTop: 17}}>
-        <Card.Content>
-          <View>
-            <Text
-              variant="titleLarge"
-              style={{marginBottom: 5, fontWeight: 'bold'}}>
-              {props.item.type}
-            </Text>
-            <Text
-              variant="titleMedium"
-              style={{marginBottom: 5, fontWeight: 'bold'}}>
-              {`Ás ${props.item.hour} - Sala: ${props.item.turma}`}
-            </Text>
-            <Text variant="bodyLarge" style={{marginBottom: 10}}>
-              {props.item.title}
-            </Text>
-            <View style={{flexDirection: 'row'}}>
-              <Avatar.Icon style={{marginRight: 10}} size={48} icon="account" />
-            </View>
-          </View>
-        </Card.Content>
-      </Card>
-    </TouchableNativeFeedback>
-  );
+const data = {
+  '2023-06-08': [
+    {
+      type: 'Aula',
+      sala: 'Kids',
+      tema: 'Deus Jesus e o E.S.',
+      descricao: 'bla bla bla',
+      horaInicial: '19:00',
+      dataInicial:'2023-06-08',
+      volunteer_ids: [1, 2, 3, 4, 5]
+    },
+    {
+      type: 'Aula',
+      sala: 'Kids',
+      tema: 'Deus Jesus e o E.S.',
+      descricao: 'bla bla bla',
+      horaInicial: '18:00',
+      dataInicial:'2023-06-08',
+      volunteer_ids: [3, 4]
+    },
+  ],
+  '2023-06-09': [
+    {
+      type: 'Aula',
+      sala: 'Kids',
+      tema: 'Deus Jesus e o E.S.',
+      descricao: 'bla bla bla',
+      horaInicial: '19:00',
+      dataInicial:'2023-06-08',
+      volunteer_ids: [1, 2]
+    },
+    {
+      type: 'Aula',
+      sala: 'Kids',
+      tema: 'Deus Jesus e o E.S.',
+      descricao: 'bla bla bla',
+      horaInicial: '18:00',
+      dataInicial:'2023-06-08',
+      volunteer_ids: [3, 4]
+    },
+  ],
 };
 
 const AgendaView = () => {
   return (
     <Agenda
-      items={{
-        '2022-12-27': [
-          {
-            type: 'Aula',
-            turma: 'Kids',
-            title: 'Deus Jesus e o E.S.',
-            hour: '18:00',
-          },
-          {
-            type: 'Aula',
-            turma: 'Kids',
-            title: 'Deus Jesus e o E.S.',
-            hour: '18:00',
-          },
-        ],
-        '2022-12-28': [
-          {
-            type: 'Aula',
-            turma: 'Kids',
-            title: 'Deus Jesus e o E.S.',
-            hour: '18:00',
-          },
-          {
-            type: 'Aula',
-            turma: 'Kids',
-            title: 'Deus Jesus e o E.S.',
-            hour: '18:00',
-          },
-        ],
-      }}
+      items={data}
       // Callback that gets called when items for a certain monthr should be loaded (month became visible)
       loadItemsForMonth={month => {
         console.info(month);
       }}
-      renderItem={item => <AgendaItem item={item} />}
+      renderItem={props => <ScheduleCard {...props} />}
       pastScrollRange={1}
       futureScrollRange={1}
     />

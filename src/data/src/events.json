@@ -1,0 +1,32 @@
+[
+    {
+        "auxiliares_ids": [
+            3
+        ],
+        "dataFinal": "2023-05-21",
+        "dataInicial": "2023-05-21",
+        "descricao": "texto",
+        "horaFinal": "13:12:00",
+        "horaInicial": "13:12:00",
+        "professores_ids": [
+            0
+        ],
+        "sala": "Juniores",
+        "tema": "my tema"
+    },
+    {
+        "auxiliares_ids": [
+            3
+        ],
+        "dataFinal": "2023-05-21",
+        "dataInicial": "2023-05-21",
+        "descricao": "texto",
+        "horaFinal": "13:12:00",
+        "horaInicial": "13:12:00",
+        "professores_ids": [
+            0
+        ],
+        "sala": "Juniores",
+        "tema": "my tema"
+    },
+]
